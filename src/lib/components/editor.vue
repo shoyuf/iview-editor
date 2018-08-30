@@ -190,10 +190,10 @@
                     return true;
                 }
             },
-            imgUrl: {
+            imgContent: {
                 type: Function,
                 default (res) {
-                    return res;
+                    return JSON.stringify(res);
                 }
             },
             highlight: {
@@ -257,8 +257,7 @@
             },
             handleUploadSuccess (res) {
 //                const url = config.filePrefix + res.key + '/large';
-                const url = this.imgUrl(res);
-                const md_link = `![](${url})`;
+                const md_link = this.imgContent(res);
 
                 const $content = this.$refs.content.$refs.textarea;
                 insertText($content, md_link);
